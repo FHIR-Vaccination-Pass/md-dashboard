@@ -8,6 +8,7 @@ import Dashboard from './views/dashboard/dashboard';
 import { Overview } from './views/dashboard/overview';
 import { VaccineHistory } from './views/history/vaccineHistory';
 import NotFound from './views/NotFound';
+import Settings from "./views/settings/settings";
 
 const RequireAuth: FC = ({ children }) => {
   const { initialized, keycloak } = useKeycloak();
@@ -34,6 +35,7 @@ const AppRoutes: FC = () => (
     >
       <Route path='' element={<Overview />} />
       <Route path='history' element={<VaccineHistory />} />
+      <Route path='settings' element={<Settings />} />
     </Route>
     <Route path='/404' element={<NotFound />} />
     <Route path='*' element={<Navigate to='/404' replace />} />

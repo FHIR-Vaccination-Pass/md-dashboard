@@ -4,7 +4,12 @@ import {
   BoxProps,
   Button,
   Flex,
+  HStack,
+  Icon,
   Image,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Portal,
   useBoolean,
   useColorModeValue,
@@ -14,9 +19,15 @@ import { Link } from 'react-router-dom';
 import VaccinationPass from '../../../../../md-dashboard/src/assets/VaccinationPassV2.png';
 import { useKeycloak } from '@react-keycloak/web';
 import { KeycloakProfile } from 'keycloak-js';
-import { HamburgerIcon } from '@chakra-ui/icons';
 import { IconType } from 'react-icons';
-import { FaBookMedical, FaHome, FaSignOutAlt, FaSyringe } from 'react-icons/fa';
+import {
+  FaBookMedical,
+  FaCog,
+  FaHome,
+  FaSignOutAlt,
+  FaSyringe,
+  FaUser,
+} from 'react-icons/fa';
 import { NavItem } from './navitem';
 
 interface DashboardProps extends BoxProps {
@@ -59,7 +70,7 @@ export const DashboardHeader: FC<DashboardProps> = () => {
         m={'10px'}
         position='fixed'
         h={'55px'}
-        w={'95vw'}
+        w={'98%'}
         ref={menuRef}
         zIndex={1000}
       >
@@ -70,11 +81,40 @@ export const DashboardHeader: FC<DashboardProps> = () => {
           alignItems={'center'}
           p={'5px'}
         >
-          <HamburgerIcon w={6} h={6} m={'4px'} onClick={setHideMenu.toggle} />
           <Link to={'/dashboard'}>
-            <Image src={VaccinationPass} w={'200px'} align={'center'} />
+            <Image
+              src={VaccinationPass}
+              w={'200px'}
+              align={'center'}
+              m={'15px'}
+            />
           </Link>
-          <Avatar m={'5px'} w={'35px'} h={'35px'} src='avatar-1.jpg' />
+
+          <InputGroup w={'50%'}>
+            <InputLeftElement
+              pointerEvents='none'
+              children={<FaUser color={'gray'} />}
+            />
+            <Input
+              variant='filled'
+              type='user'
+              placeholder='Patient Search'
+              focusBorderColor={'gray.400'}
+            />
+          </InputGroup>
+          <HStack spacing={5} mr={'15px'}>
+            <Link to={'settings'}>
+              <Icon
+                as={FaCog}
+                justifySelf={'center'}
+                alignSelf={'center'}
+                fontSize='x-large'
+                color={'gray.500'}
+                mt={'5px'}
+              />
+            </Link>
+            <Avatar w={'35px'} h={'35px'} src='avatar-1.jpg' />
+          </HStack>
         </Flex>
       </Box>
 
